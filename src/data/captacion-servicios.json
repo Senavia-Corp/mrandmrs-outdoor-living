@@ -9685,11 +9685,33 @@
     },
     "faq": {
       "titulo": "Ocala pool construction FAQs",
-      "entradilla": "Cost and permits: what is worth settling before you start a custom pool in Marion County.",
+      "entradilla": "Cost, permits, timing and financing: what is worth settling before you start a custom pool in Ocala.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Ocala?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Ocala?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Ocala be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
         },
         {
           "pregunta": "Who pulls the permits for a pool in Marion County?",
@@ -9782,11 +9804,33 @@
     },
     "faq": {
       "titulo": "Gainesville pool construction FAQs",
-      "entradilla": "Cost and permits: what is worth settling before you start a custom pool in Alachua County.",
+      "entradilla": "Cost, permits, timing and the deposit: what is worth settling before you start a custom pool in Gainesville.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Gainesville?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Gainesville?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Gainesville?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         },
         {
           "pregunta": "Who pulls the permits for a pool in Alachua County?",
@@ -9879,11 +9923,33 @@
     },
     "faq": {
       "titulo": "Alachua pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and timing: what is worth settling before you start a custom pool in Alachua.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Alachua?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Alachua?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Alachua?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
         }
       ]
     },
@@ -9958,11 +10024,33 @@
     },
     "faq": {
       "titulo": "Archer pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and financing: what is worth settling before you start a custom pool in Archer.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Archer?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Archer?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Archer be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
         }
       ]
     },
@@ -10037,11 +10125,33 @@
     },
     "faq": {
       "titulo": "Atlantis pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and the license: what is worth settling before you start a custom pool in Atlantis.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Atlantis?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Atlantis?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Atlantis?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -10116,11 +10226,33 @@
     },
     "faq": {
       "titulo": "Hillsboro Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and the deposit: what is worth settling before you start a custom pool in Hillsboro Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hillsboro Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Hillsboro Beach be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Hillsboro Beach?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -10206,6 +10338,7 @@
           }
         },
         {
+          "tema": "permits",
           "pregunta": "Who pulls the pool permit in Boca Raton?",
           "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
           "enlace": {
@@ -10214,6 +10347,7 @@
           }
         },
         {
+          "tema": "timing",
           "pregunta": "How long does it take to build a custom pool in Boca Raton?",
           "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
           "enlace": {
@@ -10294,11 +10428,33 @@
     },
     "faq": {
       "titulo": "Boynton Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and the bid: what is worth settling before you start a custom pool in Boynton Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Boynton Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Boynton Beach?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Boynton Beach?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -10373,11 +10529,42 @@
     },
     "faq": {
       "titulo": "Cedar Key pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, timing and change orders: what is worth settling before you start a custom pool in Cedar Key.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Cedar Key?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Cedar Key?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Cedar Key?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Cedar Key?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -10452,11 +10639,42 @@
     },
     "faq": {
       "titulo": "Chiefland pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, timing and the deposit: what is worth settling before you start a custom pool in Chiefland.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Chiefland?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Chiefland?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Chiefland?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Chiefland?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -10531,11 +10749,42 @@
     },
     "faq": {
       "titulo": "Cross City pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, timing and the price decisions: what is worth settling before you start a custom pool in Cross City.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Cross City?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Cross City?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Cross City?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Cross City?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -10610,11 +10859,33 @@
     },
     "faq": {
       "titulo": "Dania Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, timing and the license: what is worth settling before you start a custom pool in Dania Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Dania Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Dania Beach?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Dania Beach?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -10700,6 +10971,7 @@
           }
         },
         {
+          "tema": "permits",
           "pregunta": "Who pulls the pool permit in Davie?",
           "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
           "enlace": {
@@ -10708,6 +10980,7 @@
           }
         },
         {
+          "tema": "financing",
           "pregunta": "Can a new pool in Davie be financed?",
           "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
           "enlace": {
@@ -10788,7 +11061,7 @@
     },
     "faq": {
       "titulo": "Deerfield Beach pool construction FAQs",
-      "entradilla": "Cost, permits and financing: what is worth settling before you start a custom pool in Deerfield Beach.",
+      "entradilla": "Cost, timing and the bid: what is worth settling before you start a custom pool in Deerfield Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Deerfield Beach?",
@@ -10799,19 +11072,21 @@
           }
         },
         {
-          "pregunta": "Who pulls the pool permit in Deerfield Beach?",
-          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Deerfield Beach?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
           "enlace": {
-            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
-            "texto": "What Permits Are Required for Pool Construction in Florida?"
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
           }
         },
         {
-          "pregunta": "Can a new pool in Deerfield Beach be financed?",
-          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Deerfield Beach?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
           "enlace": {
-            "href": "/financing",
-            "texto": "Financing Your Outdoor Project"
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
           }
         }
       ]
@@ -10898,6 +11173,7 @@
           }
         },
         {
+          "tema": "permits",
           "pregunta": "Who pulls the pool permit in Delray Beach?",
           "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
           "enlace": {
@@ -10906,6 +11182,7 @@
           }
         },
         {
+          "tema": "financing",
           "pregunta": "Can a new pool in Delray Beach be financed?",
           "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
           "enlace": {
@@ -10986,11 +11263,42 @@
     },
     "faq": {
       "titulo": "Fanning Springs pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, timing, financing and change orders: what is worth settling before you start a custom pool in Fanning Springs.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Fanning Springs?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Fanning Springs?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Davie be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Fanning Springs?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11076,6 +11384,7 @@
           }
         },
         {
+          "tema": "timing",
           "pregunta": "How long does it take to build a custom pool in Fort Lauderdale?",
           "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
           "enlace": {
@@ -11084,6 +11393,7 @@
           }
         },
         {
+          "tema": "financing",
           "pregunta": "Can a new pool in Fort Lauderdale be financed?",
           "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
           "enlace": {
@@ -11164,11 +11474,33 @@
     },
     "faq": {
       "titulo": "Gulf Stream pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, timing and the price decisions: what is worth settling before you start a custom pool in Gulf Stream.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Gulf Stream?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Gulf Stream?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Gulf Stream?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -11243,11 +11575,33 @@
     },
     "faq": {
       "titulo": "Hallandale Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and the license: what is worth settling before you start a custom pool in Hallandale Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hallandale Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Hallandale Beach be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Hallandale Beach?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11322,11 +11676,33 @@
     },
     "faq": {
       "titulo": "Hawthorne pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and the bid: what is worth settling before you start a custom pool in Hawthorne.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hawthorne?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Hawthorne be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Hawthorne?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11401,11 +11777,33 @@
     },
     "faq": {
       "titulo": "High Springs pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and change orders: what is worth settling before you start a custom pool in High Springs.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in High Springs?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in High Springs be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in High Springs?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11480,7 +11878,7 @@
     },
     "faq": {
       "titulo": "Hollywood pool construction FAQs",
-      "entradilla": "Cost, timing and financing: what is worth settling before you start a custom pool in Hollywood.",
+      "entradilla": "Cost, financing and the price decisions: what is worth settling before you start a custom pool in Hollywood.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hollywood?",
@@ -11491,19 +11889,21 @@
           }
         },
         {
-          "pregunta": "How long does it take to build a custom pool in Hollywood?",
-          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
-          "enlace": {
-            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
-            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
-          }
-        },
-        {
+          "tema": "financing",
           "pregunta": "Can a new pool in Hollywood be financed?",
           "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
           "enlace": {
             "href": "/financing",
             "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Hollywood?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
           }
         }
       ]
@@ -11579,11 +11979,33 @@
     },
     "faq": {
       "titulo": "Hypoluxo pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the license and the bid: what is worth settling before you start a custom pool in Hypoluxo.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Hypoluxo?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Hypoluxo?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Hypoluxo?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11658,11 +12080,33 @@
     },
     "faq": {
       "titulo": "Juno Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the license and change orders: what is worth settling before you start a custom pool in Juno Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Juno Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Juno Beach?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Juno Beach?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11748,6 +12192,7 @@
           }
         },
         {
+          "tema": "timing",
           "pregunta": "How long does it take to build a custom pool in Jupiter?",
           "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
           "enlace": {
@@ -11756,6 +12201,7 @@
           }
         },
         {
+          "tema": "financing",
           "pregunta": "Can a new pool in Jupiter be financed?",
           "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
           "enlace": {
@@ -11836,11 +12282,42 @@
     },
     "faq": {
       "titulo": "Lake City pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, the license and the deposit: what is worth settling before you start a custom pool in Lake City.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Lake City?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Lake City?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Lake City?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Lake City?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -11915,11 +12392,33 @@
     },
     "faq": {
       "titulo": "Lighthouse Point pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the license and the price decisions: what is worth settling before you start a custom pool in Lighthouse Point.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Lighthouse Point?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Lighthouse Point?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Lighthouse Point?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -11994,11 +12493,33 @@
     },
     "faq": {
       "titulo": "Manalapan pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the bid and change orders: what is worth settling before you start a custom pool in Manalapan.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Manalapan?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Manalapan?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Manalapan?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12073,11 +12594,42 @@
     },
     "faq": {
       "titulo": "McIntosh pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, the bid and the deposit: what is worth settling before you start a custom pool in McIntosh.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in McIntosh?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in McIntosh?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in McIntosh?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in McIntosh?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12152,11 +12704,33 @@
     },
     "faq": {
       "titulo": "Micanopy pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the bid and the price decisions: what is worth settling before you start a custom pool in Micanopy.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Micanopy?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Micanopy?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Micanopy?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -12231,7 +12805,7 @@
     },
     "faq": {
       "titulo": "Miramar pool construction FAQs",
-      "entradilla": "Cost, permits and timing: what is worth settling before you start a custom pool in Miramar.",
+      "entradilla": "Cost, change orders and the deposit: what is worth settling before you start a custom pool in Miramar.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Miramar?",
@@ -12242,19 +12816,21 @@
           }
         },
         {
-          "pregunta": "Who pulls the pool permit in Miramar?",
-          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Miramar?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
           "enlace": {
-            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
-            "texto": "What Permits Are Required for Pool Construction in Florida?"
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
           }
         },
         {
-          "pregunta": "How long does it take to build a custom pool in Miramar?",
-          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Miramar?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
           "enlace": {
-            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
-            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
           }
         }
       ]
@@ -12330,11 +12906,33 @@
     },
     "faq": {
       "titulo": "Newberry pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, change orders and the price decisions: what is worth settling before you start a custom pool in Newberry.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Newberry?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Newberry?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Newberry?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -12409,11 +13007,33 @@
     },
     "faq": {
       "titulo": "North Palm Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the deposit and the price decisions: what is worth settling before you start a custom pool in North Palm Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in North Palm Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in North Palm Beach?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in North Palm Beach?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -12488,11 +13108,33 @@
     },
     "faq": {
       "titulo": "Ocean Ridge pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, timing and the license: what is worth settling before you start a custom pool in Ocean Ridge.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Ocean Ridge?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Ocean Ridge?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Ocean Ridge?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12567,11 +13209,42 @@
     },
     "faq": {
       "titulo": "Old Town pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, timing and the bid: what is worth settling before you start a custom pool in Old Town.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Old Town?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Old Town?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Old Town?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Old Town?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12646,11 +13319,42 @@
     },
     "faq": {
       "titulo": "Palatka pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, timing, financing and the deposit: what is worth settling before you start a custom pool in Palatka.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Palatka?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Palatka?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Davie be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Palatka?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12725,11 +13429,33 @@
     },
     "faq": {
       "titulo": "Palm Beach Gardens pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and the license: what is worth settling before you start a custom pool in Palm Beach Gardens.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Palm Beach Gardens?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Palm Beach Gardens be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Palm Beach Gardens?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12804,11 +13530,33 @@
     },
     "faq": {
       "titulo": "Parkland pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and the bid: what is worth settling before you start a custom pool in Parkland.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Parkland?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Parkland be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Parkland?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -12894,6 +13642,7 @@
           }
         },
         {
+          "tema": "permits",
           "pregunta": "Who pulls the pool permit in Pembroke Pines?",
           "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
           "enlace": {
@@ -12902,6 +13651,7 @@
           }
         },
         {
+          "tema": "timing",
           "pregunta": "How long does it take to build a custom pool in Pembroke Pines?",
           "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
           "enlace": {
@@ -12982,11 +13732,33 @@
     },
     "faq": {
       "titulo": "Plantation pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, financing and change orders: what is worth settling before you start a custom pool in Plantation.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Plantation?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "financing",
+          "pregunta": "Can a new pool in Plantation be financed?",
+          "respuesta": "Yes, and the order matters: you settle the design and a fixed project price first, then review financing options through our lending partner, working from a real number instead of a rough estimate. Approval and terms come from the lender. Anything we build can be financed, from a single structure to a full outdoor living project.",
+          "enlace": {
+            "href": "/financing",
+            "texto": "Financing Your Outdoor Project"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Plantation?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13061,11 +13833,33 @@
     },
     "faq": {
       "titulo": "Pompano Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the license and the bid: what is worth settling before you start a custom pool in Pompano Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Pompano Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Pompano Beach?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Pompano Beach?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13140,11 +13934,42 @@
     },
     "faq": {
       "titulo": "Reddick pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, the license and change orders: what is worth settling before you start a custom pool in Reddick.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Reddick?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Reddick?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Reddick?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Reddick?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13219,11 +14044,33 @@
     },
     "faq": {
       "titulo": "Royal Palm Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the license and the deposit: what is worth settling before you start a custom pool in Royal Palm Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Royal Palm Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Royal Palm Beach?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Royal Palm Beach?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13298,11 +14145,33 @@
     },
     "faq": {
       "titulo": "South Palm Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the license and the price decisions: what is worth settling before you start a custom pool in South Palm Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in South Palm Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in South Palm Beach?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in South Palm Beach?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -13377,11 +14246,33 @@
     },
     "faq": {
       "titulo": "Southwest Ranches pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the bid and change orders: what is worth settling before you start a custom pool in Southwest Ranches.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Southwest Ranches?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Southwest Ranches?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Southwest Ranches?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13456,11 +14347,33 @@
     },
     "faq": {
       "titulo": "Tequesta pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the bid and the deposit: what is worth settling before you start a custom pool in Tequesta.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Tequesta?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the bid",
+          "pregunta": "Is the lowest bid the best choice for a pool in Tequesta?",
+          "respuesta": "Not by itself. The problem is a bid that is lower because it covers less. Two quotes are only comparable when they list the same scope, so the useful exercise is putting them side by side, line by line, rather than comparing totals. Ask what each one leaves out before asking which one is cheaper.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Tequesta?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13535,11 +14448,33 @@
     },
     "faq": {
       "titulo": "Trenton pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, change orders and the deposit: what is worth settling before you start a custom pool in Trenton.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Trenton?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Trenton?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Trenton?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13614,11 +14549,33 @@
     },
     "faq": {
       "titulo": "Waldo pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, the deposit and the price decisions: what is worth settling before you start a custom pool in Waldo.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Waldo?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in Waldo?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Waldo?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -13693,11 +14650,33 @@
     },
     "faq": {
       "titulo": "Wellington pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and change orders: what is worth settling before you start a custom pool in Wellington.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Wellington?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Wellington?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Wellington?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13772,11 +14751,33 @@
     },
     "faq": {
       "titulo": "West Palm Beach pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and the deposit: what is worth settling before you start a custom pool in West Palm Beach.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in West Palm Beach?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in West Palm Beach?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the deposit",
+          "pregunta": "Should I pay a large deposit up front for a pool in West Palm Beach?",
+          "respuesta": "Payments should track progress rather than arrive ahead of it. A schedule tied to completed, inspected stages protects both sides: you are never far ahead of the work, and the contractor is never far behind on materials. Ask for that schedule in writing before you sign, next to the scope and the price.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -13851,11 +14852,33 @@
     },
     "faq": {
       "titulo": "Weston pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits and the price decisions: what is worth settling before you start a custom pool in Weston.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Weston?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Weston?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "the price decisions",
+          "pregunta": "What moves the price of a custom pool in Weston?",
+          "respuesta": "Size moves more than anything else, but it is one of eight decisions: pool style, which is really a construction method, interior finish, deck material, deck size, the spa and which kind, what else you build at the same time, and site conditions, which are not optional. The estimator shows which of them is moving your number.",
+          "enlace": {
+            "href": "/blogs/how-much-does-a-custom-pool-cost-in-florida",
+            "texto": "How Much Does a Custom Pool Really Cost in Florida? 8 Decisions That Move the Price"
+          }
         }
       ]
     },
@@ -13930,11 +14953,42 @@
     },
     "faq": {
       "titulo": "Williston pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, permits, timing and the license: what is worth settling before you start a custom pool in Williston.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Williston?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "permits",
+          "pregunta": "Who pulls the pool permit in Williston?",
+          "respuesta": "We do, under our Florida pool contractor license. A new inground pool needs one building permit from the city or county office that has jurisdiction over your property; it covers the shell, the deck, the electrical work and the plumbing, each inspected at its own stage. We prepare the submittal, pull the permit and coordinate every inspection through to a closed permit at start-up.",
+          "enlace": {
+            "href": "/blogs/what-permits-are-required-for-pool-construction-in-florida",
+            "texto": "What Permits Are Required for Pool Construction in Florida?"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Williston?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "the license",
+          "pregunta": "How do I check a pool contractor’s license in Williston?",
+          "respuesta": "Through the state licensing authority’s public lookup, using the license number the contractor gives you; ours are published on every page of this site. Check that the license is active, that it covers pool and spa construction rather than general contracting alone, and that the name on it matches the company you are contracting with, not an affiliated one.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },
@@ -14009,11 +15063,33 @@
     },
     "faq": {
       "titulo": "Wilton Manors pool construction FAQs",
-      "entradilla": "Cost: the first thing worth settling before you start a custom pool.",
+      "entradilla": "Cost, timing and change orders: what is worth settling before you start a custom pool in Wilton Manors.",
       "anade": [
         {
           "pregunta": "How much does a custom pool cost in Wilton Manors?",
-          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit."
+          "respuesta": "There is no single number: a custom pool is priced from its own design, size, finishes and site conditions. Our estimator walks you through the choices that move the price, and you get a fixed project price in writing before you commit.",
+          "enlace": {
+            "href": "/pool-cost-estimator",
+            "texto": "Try the pool cost estimator"
+          }
+        },
+        {
+          "tema": "timing",
+          "pregunta": "How long does it take to build a custom pool in Wilton Manors?",
+          "respuesta": "There is no single number: the calendar depends on the permit office, the season and the scope. What is fixed is the order of the phases and the cure time of concrete and plaster, which no crew can shorten. After the design is approved and the permit is submitted, you get a schedule for your own project, updated at every inspection.",
+          "enlace": {
+            "href": "/blogs/pool-construction-timeline-in-florida-what-to-expect-from-start-to-finish",
+            "texto": "Pool Construction Timeline in Florida: What to Expect From Start to Finish"
+          }
+        },
+        {
+          "tema": "change orders",
+          "pregunta": "What should a change order look like on a pool project in Wilton Manors?",
+          "respuesta": "In writing, priced and signed before the work happens. A verbal change that appears on the final invoice is the most common source of disputes, and the fix is procedural rather than adversarial: agree at the start that nothing changes without a signed order, and keep every order with the contract.",
+          "enlace": {
+            "href": "/blogs/how-to-choose-a-pool-builder-in-florida",
+            "texto": "How to Choose a Pool Builder in Florida: 10 Questions to Ask Before You Sign"
+          }
         }
       ]
     },

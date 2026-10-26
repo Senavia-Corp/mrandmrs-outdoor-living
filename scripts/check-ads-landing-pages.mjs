@@ -78,7 +78,7 @@ const LANDINGS = [
     },
     /* 3 de la plantilla de ciudad + 1 local (SEO-SAFE, 1-oct-2026: que oficina revisa el permiso
      * segun el lado del limite municipal, y el septico). Solo Gainesville y Ocala la llevan. */
-    faq: { n: 3 },   // D-257 (L2 de PUBLICAR): fuera «What is included…», identica a la de la ficha; quedan coste, permisos del condado y oficina
+    faq: { n: 5 },   // D-257: fuera «What is included…» · L3b (S2): coste, permisos del condado, oficina y dos preguntas locales de texto-local.json
   },
   {
     grupo: 'Ocala',
@@ -94,7 +94,7 @@ const LANDINGS = [
       preseleccion: 'New Custom Pool',
     },
     /* Idem: 3 de plantilla + 1 local (oficina segun el limite municipal, caliza y septico). */
-    faq: { n: 3 },   // D-257 (L2 de PUBLICAR): fuera «What is included…», identica a la de la ficha; quedan coste, permisos del condado y oficina
+    faq: { n: 5 },   // D-257: fuera «What is included…» · L3b (S2): coste, permisos del condado, oficina y dos preguntas locales de texto-local.json
   },
   {
     grupo: 'Full Remodel',

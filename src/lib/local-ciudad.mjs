@@ -35,25 +35,37 @@ const prioridad = (f) => ((f.servicios ?? []).some((s) => s === 'construction' |
 const aprobada = (f) => String(f.estado ?? '').startsWith('aprobada') && f.src && f.ancho && f.alto && f.alt;
 
 /**
- * Las fotos de obra cerca de una ruta: de la ciudad si las hay («in <Ciudad>»), si no del condado
- * («in <Condado> County»). Las del condado se reparten entre sus ciudades por turno, para que dos
- * ciudades del mismo condado no enseñen las mismas tres. Nunca repiten el hero ni las de seccion.
+ * Las fotos de obra cerca de una ruta (D-269): primero las de piscina (`servicios` construction o
+ * remodeling), ciudad antes que condado; si no llegan a tres, se completan con obra ubicada de otros
+ * servicios, cada una con su `alt` del banco y su rotulo «In <Ciudad>» / «In <Condado> County». Las
+ * del condado se reparten por turno entre sus ciudades, para que dos ciudades del mismo condado no
+ * enseñen las mismas tres. Nunca repiten el hero, las de seccion ni las de la galeria de obra.
  */
 function fotosDeObra(ruta, slug, condado) {
   const fuera = new Set([fotoDeHeroe(ruta)?.id, ...fotosDeSeccion(ruta).map((f) => f.id)].filter(Boolean));
   const candidatas = BANCO.filter((f) => aprobada(f) && !fuera.has(f.id) && !GALERIA.has(f.src) && lugarDe(f));
-  const orden = (xs) => xs.sort((a, b) => prioridad(a) - prioridad(b) || a.id.localeCompare(b.id));
-  const enCiudad = esCondadoRuta(ruta) ? [] : orden(candidatas.filter((f) => lugarDe(f).ciudad === slug));
-  if (enCiudad.length) return enCiudad.slice(0, FOTOS_MAX).map((f) => ({ ...sinNada(f), donde: `In ${NOMBRE_DE_RUTA[ruta]}` }));
-  const enCondado = orden(candidatas.filter((f) => lugarDe(f).condado === condado));
-  if (!enCondado.length) return [];
+  const porId = (a, b) => a.id.localeCompare(b.id);
   const hermanas = CIUDADES_PISCINA.filter((r) => CONDADO_DE_RUTA[r] === condado);
   const turno = esCondadoRuta(ruta) ? 0 : Math.max(0, hermanas.indexOf(ruta)) + 1;
-  const desde = (turno * FOTOS_MAX) % enCondado.length;
-  const giro = [...enCondado.slice(desde), ...enCondado.slice(0, desde)];
-  const unicas = []; const vistas = new Set();
-  for (const f of giro) { if (!vistas.has(f.id)) { vistas.add(f.id); unicas.push(f); } if (unicas.length === FOTOS_MAX) break; }
-  return unicas.map((f) => ({ ...sinNada(f), donde: `In ${nombreCondado(condado)}` }));
+  const gira = (xs) => { if (!xs.length) return xs; const d = (turno * FOTOS_MAX) % xs.length; return [...xs.slice(d), ...xs.slice(0, d)]; };
+  const enCiudad = (f) => !esCondadoRuta(ruta) && lugarDe(f).ciudad === slug;
+  const enCondado = (f) => !enCiudad(f) && lugarDe(f).condado === condado;
+  const piscina = (f) => prioridad(f) === 0;
+  const bolsas = [
+    [candidatas.filter((f) => enCiudad(f) && piscina(f)).sort(porId), `In ${NOMBRE_DE_RUTA[ruta]}`],
+    [gira(candidatas.filter((f) => enCondado(f) && piscina(f)).sort(porId)), `In ${nombreCondado(condado)}`],
+    [candidatas.filter((f) => enCiudad(f) && !piscina(f)).sort(porId), `In ${NOMBRE_DE_RUTA[ruta]}`],
+    [gira(candidatas.filter((f) => enCondado(f) && !piscina(f)).sort(porId)), `In ${nombreCondado(condado)}`],
+  ];
+  const fotos = []; const vistas = new Set();
+  for (const [bolsa, donde] of bolsas) {
+    for (const f of bolsa) {
+      if (fotos.length === FOTOS_MAX) break;
+      if (vistas.has(f.id)) continue;
+      vistas.add(f.id); fotos.push({ ...sinNada(f), donde });
+    }
+  }
+  return fotos;
 }
 const sinNada = (f) => ({ id: f.id, src: f.src, alt: f.alt, ancho: f.ancho, alto: f.alto });
 

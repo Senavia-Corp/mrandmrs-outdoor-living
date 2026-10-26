@@ -43,8 +43,9 @@ const SOLO_COMPROBAR = process.argv.includes('--check');
  * (2 preguntas con la ciudad en el enunciado, respuesta de 40-60 palabras que sale de una ruta del sitio y la
  * enlaza). Aqui solo se monta detras de la de coste, que gana su enlace al estimador. */
 const TEXTO_LOCAL = JSON.parse(fs.readFileSync(path.join(RAIZ, 'src/data/texto-local.json'), 'utf8'));
-const TEMA_ENLACE = { '/financing': 'financing', '/pool-cost-estimator': 'cost' };
-const temaDe = (href) => TEMA_ENLACE[href] ?? (/permit/.test(href) ? 'permits' : /timeline/.test(href) ? 'timing' : null);
+/* L3b: cada pregunta local trae su `tema` (permits, timing, financing, the license, the bid, change orders, the deposit, the
+ * price decisions); la entradilla se deriva de ellos. */
+const temaDe = (q) => q.tema ?? null;
 const leer = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 
 /**
@@ -94,8 +95,9 @@ function entradaCaptacion(c) {
   if (local?.faq?.length) {
     const [coste, ...resto] = e.faq.anade;
     e.faq.anade = [{ ...coste, enlace: { href: '/pool-cost-estimator', texto: 'Try the pool cost estimator' } }, ...local.faq, ...resto];
-    const temas = ['cost', ...local.faq.map((q) => temaDe(q.enlace?.href))];
-    if (temas.some((t) => !t) || new Set(temas).size !== temas.length) throw new Error(`[captacion-ciudades] ${c.slug}: la FAQ local trae un enlace sin tema o dos del mismo tema`);
+    // Gainesville y Ocala conservan su pregunta de permisos del condado (conCondado): el tema entra en la entradilla.
+    const temas = ['cost', ...(c.condado ? ['permits'] : []), ...local.faq.map(temaDe)];
+    if (temas.some((t) => !t) || new Set(temas).size !== temas.length) throw new Error(`[captacion-ciudades] ${c.slug}: la FAQ local trae una pregunta sin tema o dos del mismo tema`);
     e.faq.entradilla = `${temas[0][0].toUpperCase()}${temas[0].slice(1)}, ${temas.slice(1, -1).join(', ')}${temas.length > 2 ? ' and ' : ''}${temas[temas.length - 1]}: what is worth settling before you start a custom pool in ${c.ciudad}.`;
   }
   return e;
