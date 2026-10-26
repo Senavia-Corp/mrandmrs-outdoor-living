@@ -1001,6 +1001,7 @@ for (const [ruta, zona, descripcion] of [
     const b = e?.jsonLd?.[0]; if (!b) continue;
     const cambios = [];
     if (b.about?.['@type'] === 'Project') cambios.push(['about.@type', 'Project', 'CreativeWork']);
+    if (b.about && b.about.url === undefined) cambios.push(['about.url', undefined, `${SITIO_R22}${ruta}`]);   // D-276
     // Las imagenes del baseline son URL del CDN de Webflow; la puerta las compara ya localizadas (`aLocal`), asi que el «era» es la local.
     // El «era» es el valor del baseline TAL CUAL (la URL del CDN en las imagenes); el «es», la local absoluta que emite el build.
     for (const camino of ['url', 'image.url', 'about.image']) { const v = porCaminoL5(b, camino); if (typeof v !== 'string') continue; const local = aLocal(v); if (local.startsWith('/')) cambios.push([camino, v, absR(local)]); }

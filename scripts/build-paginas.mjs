@@ -3610,7 +3610,9 @@ for (const [ruta] of RUTAS) {
   if (esProyecto(ruta) && jsonLd[0]) {
     const b = jsonLd[0]; const abs = (p) => (typeof p === 'string' && p.startsWith('/') ? `${SITIO_ABS}${p}` : p);
     if (b.about?.['@type'] === 'Project') b.about['@type'] = 'CreativeWork';
-    b.url = abs(b.url); if (b.image?.url) b.image.url = abs(b.image.url); if (b.about?.image) b.about.image = abs(b.about.image);
+    b.url = abs(b.url);
+    if (b.about && !b.about.url) b.about.url = `${SITIO_ABS}${ruta}`;   // D-276: la obra lleva su URL (la canonica)
+    if (b.image?.url) b.image.url = abs(b.image.url); if (b.about?.image) b.about.image = abs(b.about.image);
   }
   /* L5 de PUBLICAR (6.5): /gallery gana un ImageGallery propio cuyas partes son las 14 galerias por categoria. */
   if (ruta === '/gallery') {

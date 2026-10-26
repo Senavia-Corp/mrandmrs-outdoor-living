@@ -74,7 +74,7 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
 .mm-pie-foto { display: none; }
 /* Hero A de ciudad: el subtitulo (el `<h2>` de siempre) y la variante sin foto. */
 .mm-miga ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--mm-e-8); font-size: 14px; line-height: 1.5; color: var(--mm-tinta-suave); }
-.mm-miga li + li::before { content: "/"; margin-right: var(--mm-e-8); color: var(--mm-tinta-suave); }
+.mm-miga li:not(:last-child)::after { content: "/"; margin-left: var(--mm-e-8); color: var(--mm-tinta-suave); } /* D-276 (nota): la barra cierra el escalon anterior y no parte linea */
 .mm-miga li { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); font-weight: 600; }
 .mm-miga a { display: inline-flex; align-items: center; min-height: var(--mm-ctl-s); color: var(--mm-navy); text-decoration: none; border-radius: var(--mm-r-8); }
 .mm-miga a:focus-visible { outline: var(--mm-foco-grosor) solid var(--mm-foco); outline-offset: var(--mm-foco-aire); box-shadow: var(--mm-foco-halo); }

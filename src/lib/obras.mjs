@@ -46,6 +46,7 @@ export function seoDeObra(o) {
       image: { '@type': 'ImageObject', url: abs(o.portada), description: o.alt },
       about: {
         '@type': 'CreativeWork',
+        url,   // D-276: la obra tiene su URL, la canonica de la ficha
         name: o.titulo,
         description: o.resumen,
         location: { '@type': 'Place', name: o.ubicacion },
