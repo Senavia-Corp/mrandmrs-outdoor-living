@@ -58,9 +58,10 @@ const hay = videos.length > 0;
             </span>
           </a>
           <div class="mm-yt__info">
-            <h3 class="mm-yt__vtitulo">
+            {/* L1 (D-255, punto 3): h2 real, no h3 con aria-level: bajo el h1 de la pagina no hay otro nivel. */}
+            <h2 class="mm-yt__vtitulo">
               <a href={v.enlace} target="_blank" rel="noopener noreferrer">{v.titulo}</a>
-            </h3>
+            </h2>
             <p class="mm-yt__fecha">{v.fecha}</p>
             {v.descripcion.length > 0 && (
               <div class="mm-yt__desc">{v.descripcion.map((l) => <p>{l}</p>)}</div>

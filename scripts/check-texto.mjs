@@ -1466,6 +1466,10 @@ const LINEAS_CIUDADES_FICHA =Object.keys(SERVICIOS_CIUDAD).map((s) => `/services
     motivo: 'CIUDADES-BUSCADOR: la ficha enlaza a sus landings de ciudad en un buscador, detras de «Where We Serve»' }));
 
 const LINEAS_ANADIDAS = [
+  /* D-256 (25-oct-2026, T-137): /pool-investment-estimator deja de ser huerfana; la linea va bajo la entradilla del
+   * estimador. Derivada del mismo componente que la pinta (Estimador.astro). */
+  { rutas: ['/pool-cost-estimator'], tras: ['Answer 7 quick questions to see what your custom pool in Florida could cost.'],
+    lineas: ['Prefer the estimator on its own page? Open the Pool Investment Estimator.'], motivo: 'D-256 (T-137): enlace a la version desnuda del estimador' },
   ...LINEAS_CIUDADES_FICHA,
   /* ASTRO-2 · T-29: junto al FAQ de las 14 fichas, la tarjeta de accion: el boton de la pagina (oro,
    * D-76) y los dos telefonos. Cinco lineas seguidas, detras de las preguntas. Va DELANTE de la
@@ -4091,7 +4095,8 @@ function financiacionTexto(lineas) {
   };
   const tras = (x) => (x >= 0 ? x + 1 : -1);
   quita(tras(out.findIndex((l) => /^Updated [A-Z][a-z]{2} \d{4}$/.test(l))), tels, 'los dos telefonos detras de las resenas');
-  quita(tras(out.indexOf('Can I Get An Estimate If I Am Not Financing?')), ['Get A Free Estimate', ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
+  // D-256 (T-138): la tarjeta de accion del FAQ gana el enlace al estimador desnudo, entre el boton y el telefono.
+  quita(tras(out.indexOf('Can I Get An Estimate If I Am Not Financing?')), ['Get A Free Estimate', 'See the Pool Investment Estimator', ...tels], 'la tarjeta de accion del FAQ, detras de la ultima pregunta');
   quita(tras(out.findIndex((l) => l.startsWith('Financing is provided by Acorn Finance'))), tels, 'los dos telefonos de la banda final, detras de su linea legal');
   return [...out, ...faltas.map((x) => `⟦FALTA: ${x}⟧`)];
 }

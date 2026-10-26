@@ -111,5 +111,8 @@ export function videoFondo(html) {
       .map(([, u]) => `<source data-src="${u}" type="video/${u.endsWith('.webm') ? 'webm' : 'mp4'}">`).join('');
     return `${div}${picture(nombre)}${v}${src}</video>${control ? '<div aria-live="polite" hidden>' : ''}`;
   });
-  return { html: out, heroe };
+  /* L1 (D-255, punto 7): los dos iconos de los controles (`play-24.svg`, `pause.svg`) llegan del origen sin
+   * `width`/`height`; la pagina los pinta a 24 px. Se les ponen aqui, que es por donde pasan los 80 bloques. */
+  const conMedidas = out.replace(/<img\b(?![^>]*\bwidth=)([^>]*\bsrc="\/images\/site\/(?:play-24|pause)\.svg"[^>]*)>/g, '<img$1 width="24" height="24">');
+  return { html: conMedidas, heroe };
 }

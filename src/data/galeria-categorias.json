@@ -14,7 +14,7 @@
    "nombre": "Pools & Spas",
    "h1": "Custom Pool & Spa Gallery",
    "title": "Custom Pool & Spa Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "Browse photos of custom pools and spas we designed and built in Florida: raised spas, sun shelves, glass tile and travertine decks. Get ideas for your backyard.",
+   "description": "Browse photos of custom pools and spas we designed and built in Florida: raised spas, sun shelves, glass tile and travertine decks.",
    "intro": "Every pool here is one we engineered, permitted and built for a Florida homeowner. Look closely at the details that change how a pool gets used: raised spas with spillways, sun shelves with in-water loungers, glass tile waterlines and travertine or marble decks that stay cool underfoot. Open any photo to see it full size, and tell us which ones look like the backyard you have in mind.",
    "linea": "Custom inground pools and spas, engineered and permitted.",
    "servicio": {
@@ -187,7 +187,7 @@
    "nombre": "Pool Remodeling",
    "h1": "Pool Remodeling Gallery",
    "title": "Pool Remodeling Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "See pool remodeling projects completed in Florida: new tile, resurfaced interiors, travertine decks and added water features. Real photos to plan your renovation.",
+   "description": "See pool remodeling projects completed in Florida: new tile, resurfaced interiors, travertine decks and added water features.",
    "intro": "A remodel keeps the shell and changes everything you see and touch. These are pools we renovated for Florida homeowners: resurfaced interiors, new waterline tile, travertine decks laid over tired concrete, and raised walls with sheer-descent waterfalls added to pools that never had one. Use them to decide how far you want your own renovation to go, then ask us what it would take.",
    "linea": "Resurfacing, new tile, decks and water features.",
    "servicio": {
@@ -337,7 +337,7 @@
    "nombre": "Aluminum Pergolas",
    "h1": "Aluminum Pergola Gallery",
    "title": "Aluminum Pergola Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "Photos of custom aluminum pergolas and patio covers built for Florida homes: freestanding, attached, poolside and over outdoor kitchens. Find a design you like.",
+   "description": "Photos of custom aluminum pergolas and patio covers built for Florida homes: freestanding, attached, poolside and over outdoor kitchens.",
    "intro": "Aluminum pergolas and insulated patio covers we built across Florida, in the colors and layouts homeowners actually choose: bronze and white frames, freestanding structures beside the pool, covers attached along the back of the house, and privacy walls where the neighbors are close. Each one is engineered for Florida wind and sized to the patio it shades. Open the photos and note the ones that fit your home.",
    "linea": "Custom aluminum pergolas built for Florida sun and wind.",
    "servicio": {
@@ -669,7 +669,7 @@
    "nombre": "Louvered Roofs",
    "h1": "Louvered Roof Gallery",
    "title": "Louvered Roof Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "See motorized louvered roof systems installed on Florida patios: louvers open and closed, LED lighting at night, fans and outdoor kitchens underneath. Get ideas.",
+   "description": "See motorized louvered roof systems installed on Florida patios: louvers open and closed, LED lighting at night, fans and outdoor kitchens underneath.",
    "intro": "A louvered roof is a pergola you can close. These photos show systems we installed on Florida patios with the louvers open to the sky, closed against the rain, and lit at night with LED strips in the beams. Look at how each one is combined with fans, an outdoor kitchen or a pool deck, and at the views from above that show how the louvers and motors work.",
    "linea": "Motorized louvered roof systems for shade on demand.",
    "servicio": {
@@ -1080,7 +1080,7 @@
    "nombre": "Decks",
    "h1": "Custom Deck Gallery",
    "title": "Custom Deck & Patio Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "Browse custom decks and patios built for Florida homes: wood platforms, porcelain and travertine pool decks, and large-format pavers set in turf. See real work.",
+   "description": "Browse custom decks and patios built for Florida homes: wood platforms, porcelain and travertine pool decks, and large-format pavers set in turf.",
    "intro": "Decks and patio surfaces we built around Florida homes and pools. You will find wood platforms, polished porcelain laid on the diagonal, travertine pool decks, and large-format slabs set in strips of artificial turf. The photos were taken once the work was finished, some right after rain, so you can see how each surface drains and how it meets the lawn, the planting and the pool edge.",
    "linea": "Wood, porcelain, travertine and paver decks built for the climate.",
    "servicio": {
@@ -1238,7 +1238,7 @@
    "nombre": "Landscaping",
    "h1": "Landscaping Gallery",
    "title": "Landscaping Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "See landscaping projects completed in Florida: tropical planting beds, artificial turf, putting greens, river rock borders and poolside gardens. Real photos.",
+   "description": "See landscaping projects completed in Florida: tropical planting beds, artificial turf, putting greens, river rock borders and poolside gardens.",
    "intro": "Landscaping we designed and installed in Florida: tropical beds of bromeliads, crotons and palms edged in river rock, artificial turf lawns, backyard putting greens, formal gardens with topiary and fountains, and planting that frames a pool instead of crowding it. These are finished installations, photographed in daylight, to help you choose the plants, the stone and the turf for your own yard.",
    "linea": "Planting, turf, putting greens and stone borders.",
    "servicio": {
@@ -1390,7 +1390,7 @@
    "nombre": "Pole Barns",
    "h1": "Pole Barn & Steel Building Gallery",
    "title": "Pole Barn & Steel Building Photos | Mr & Mrs Outdoor Living",
-   "description": "Photos of pole barns and steel buildings built in Florida: open equipment sheds, enclosed metal buildings and steel-truss roofs. See the structures up close.",
+   "description": "Photos of pole barns and steel buildings built in Florida: open equipment sheds, enclosed metal buildings and steel-truss roofs.",
    "intro": "Pole barns and steel buildings we put up on Florida properties: long open sheds for equipment and hay, enclosed buildings with metal siding and trim, and lean-to roofs carried on steel trusses. The photos show the post spacing, the truss work and the roofing from the outside and from underneath, so you can judge the scale and the finish before you call us about your own building.",
    "linea": "Pole barns, equipment sheds and steel buildings.",
    "servicio": {
@@ -1493,8 +1493,8 @@
    "slug": "pool-screen-enclosures",
    "nombre": "Pool Screen Enclosures",
    "h1": "Pool Screen Enclosure Gallery",
-   "title": "Pool Screen Enclosure Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "See pool screen enclosures built over Florida pools: aluminum pool cages that keep out insects and debris while keeping the view. Real projects, real photos.",
+   "title": "Pool Screen Enclosure Gallery | Mr & Mrs Outdoor Living",
+   "description": "See pool screen enclosures built over Florida pools: aluminum pool cages that keep out insects and debris while keeping the view.",
    "intro": "Pool screen enclosures we built over Florida pools. A pool cage keeps leaves, insects and most of the debris out of the water while the frame stays thin enough to keep the view. Look at the roof shapes, the frame colors and how each enclosure ties into the house and the deck, then tell us the size of your pool and we will design one for it.",
    "linea": "Pool cages that keep bugs and debris out.",
    "servicio": {
@@ -1574,7 +1574,7 @@
    "nombre": "Patio Screen Rooms",
    "h1": "Patio Screen Room Gallery",
    "title": "Patio Screen Room Photo Gallery | Mr & Mrs Outdoor Living",
-   "description": "Photos of patio screen rooms and enclosures built on Florida homes: screened patios and lanais you can use all year without the insects. Browse real projects.",
+   "description": "Photos of patio screen rooms and enclosures built on Florida homes: screened patios and lanais you can use all year without the insects.",
    "intro": "Patio screen rooms we built on Florida homes. Screening a patio or lanai turns it into a room you can use in the evening and through the summer without the mosquitoes. These photos show the frames, the doors and the roof tie-ins on finished projects, so you can see what a screen room would look like on the back of your own house.",
    "linea": "Screened patios and lanais for year-round use.",
    "servicio": {

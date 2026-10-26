@@ -1,5 +1,5 @@
 {
-  "_": "SEO-AEO-GEO F1 — DERIVADO DE NADA, ESCRITO A MANO. Fuente UNICA de los <title> y meta description que se apartan del origen de Webflow. Lo lee `src/layouts/Base.astro` (que los emite) y `scripts/check-seo.mjs` (que los exige): una sola copia, imposible que se desincronicen. Cada entrada lleva su motivo. Las 53 de /services/pool-builders/ NO van aqui: su meta vive en Sanity y es contenido del cliente.",
+  "_": "SEO-AEO-GEO F1 — DERIVADO DE NADA, ESCRITO A MANO. Fuente UNICA de los <title> y meta description que se apartan del origen de Webflow. Lo lee `src/layouts/Base.astro` (que los emite) y `scripts/check-seo.mjs` (que los exige): una sola copia, imposible que se desincronicen. Cada entrada lleva su motivo. Las 53 de /services/pool-builders/ NO van aqui: su meta vive en Sanity y es contenido del cliente. Desde L1 de PUBLICAR (25-oct-2026) tambien las 100 de D-255e: 34 articulos, 27 ciudades de piscina, 11 de reforma y su ficha (description) y 14 ciudades (title); su meta vive en Sanity y aqui queda la declaracion hasta que el CMS se corrija tras publicar.",
   "/": {
     "title": "Custom Pool Builders & Outdoor Living in Florida",
     "description": "Custom inground pool builders and outdoor living design-build contractors serving North & South Florida. Licensed, engineered, and turnkey construction.",
@@ -27,8 +27,8 @@
   },
   "/services/pool-remodeling": {
     "title": "Complete Pool Remodeling in North Florida | Mr & Mrs",
-    "description": "Complete pool remodeling in North Florida: resurfacing, tile and coping, equipment upgrades and deck work in one permitted project. Licensed across Florida.",
-    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior. SEO-SAFE (1-oct-2026): «Complete» delante, que es la intencion que distingue esta landing de un resurfacing suelto (SEO_KEYWORD_URL_MAP.md)."
+    "description": "Pool remodeling in North Florida: resurfacing, tile and coping, equipment upgrades and deck work in one permitted project. Licensed across Florida.",
+    "motivo": "LANDING DE PAGO. North Florida primero, por la misma razon que la anterior. SEO-SAFE (1-oct-2026): «Complete» delante, que es la intencion que distingue esta landing de un resurfacing suelto (SEO_KEYWORD_URL_MAP.md). · L1 (D-255e, 25-oct-2026): description de 156 car.: fuera «Complete», que el titulo ya dice (147)."
   },
   "/contact-us": {
     "title": "Contact Florida Pool Builders | Free Estimate",
@@ -105,5 +105,337 @@
     "title": "Custom Pool Builders in Ocala, FL | Mr & Mrs",
     "description": "Custom inground pool construction in Ocala and Marion County, FL. Licensed pool builders serving North Florida. Request a free estimate.",
     "motivo": "LANDING DE PAGO. Misma razon que Gainesville."
+  },
+  "/blogs/aluminum-vs-wood-pergolas-in-florida": {
+    "description": "Aluminum and wood pergolas fail in different places. How Florida sun, humidity, termites and wind uplift decide which one is worth having in year ten.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 150 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/before-and-after-pool-remodel-ideas": {
+    "description": "Which pool remodel changes you see from the deck, which only show up in a drone photo, and how to read a before-and-after pair before you buy the idea.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity, SEO-SAFE) recortada a 151 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/before-you-build-a-pool-in-florida": {
+    "description": "Twelve decisions to settle before excavation starts on a Florida pool: placement, access, drainage, equipment, screening and those costly to change later.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 175 car. (Sanity, SEO-SAFE) recortada a 154 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/best-outdoor-kitchen-materials-for-florida": {
+    "description": "Which outdoor kitchen materials survive Florida sun, salt and rain (frame, hardware, countertop) and why the part that fails first is one you never see.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 152 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/building-a-pool-in-north-florida": {
+    "description": "What changes when you build a pool in Gainesville or Ocala: limestone under the yard, well water, a shorter swim season and who reviews the permit.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity, SEO-SAFE) recortada a 147 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/cold-plunge-integration-florida-pool-construction": {
+    "description": "How a cold plunge is built into a new Florida pool: its own loop, a chiller sized for the heat, electrical, placement, and what to decide before the shell.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity, SEO-SAFE) recortada a 155 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/common-pool-construction-mistakes-we-see-in-florida": {
+    "description": "The pool construction mistakes we see in Florida, from unpermitted work to bad drainage and undersized equipment, and how to avoid each before you sign.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 152 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/complete-guide-to-pool-construction-in-florida-costs-timeline-process": {
+    "description": "How a custom pool is built in Florida: what drives the cost, the timeline, the permit and inspection steps, and the decisions to make before design.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 148 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/designing-a-complete-louvered-roof-system": {
+    "description": "Plan lights, fans, screens and heat around a motorized louvered roof: which surface each mounts to, what changes when the roof closes, and when it locks.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 153 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/do-you-need-a-permit-for-a-pergola-in-florida": {
+    "description": "Yes, and the useful question is which reviews your pergola triggers. What gets looked at, which inspections stop the job, and what to file first.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity, SEO-SAFE) recortada a 145 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/features-to-compare-before-buying-a-louvered-roof": {
+    "description": "Seven features that differ between motorized louvered roof quotes: blade span, seal, drainage, metal, anchorage, drive and controls. Five are permanent.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 152 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/gas-electric-and-plumbing-for-an-outdoor-kitchen": {
+    "description": "The four connections an outdoor kitchen needs, what your house has to supply, why distance changes the price, and which cannot be added after the deck.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 151 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/grill-island-vs-full-outdoor-kitchen": {
+    "description": "A grill island is a station and a full outdoor kitchen is a room. Count your trips indoors, then read what the trench under the deck decides for you.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 149 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-long-does-a-pool-remodel-take-in-florida": {
+    "description": "A Florida pool remodel's calendar is made of waits, not work days. Which stops your scope adds, what to choose before chip-out, and what you can shorten.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 153 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-much-does-a-custom-pool-cost-in-florida": {
+    "description": "See what moves the price of a custom pool in Florida — size, style, finish, decking, spa and site conditions — with the numbers behind each decision.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 149 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-much-does-a-motorized-louvered-roof-cost": {
+    "description": "Our estimator prices a motorized louvered roof at $18,000. What that line covers, the seven factors that change the scope, and the costs outside it.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 148 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-much-does-a-pool-remodel-cost-in-florida": {
+    "description": "What a pool remodel costs in Florida, why it prices at 82% of the same result built new, and the four decisions that set the scope before you quote.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 148 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-much-does-a-pool-screen-enclosure-cost-in-florida": {
+    "description": "What a pool screen enclosure costs in Florida: the figure our estimator uses, why height and span move it more than deck size, and what the footers add.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 152 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-much-does-an-aluminum-pergola-cost-in-florida": {
+    "description": "Our estimator prices an aluminum pergola at $8,500. What that line covers, the six decisions that move it, and the costs that sit outside it.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 141 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-much-does-an-outdoor-kitchen-cost-in-florida": {
+    "description": "What an outdoor kitchen costs in Florida: the number our estimator uses, why price follows appliance cut-outs and utility runs, and what to decide first.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity, SEO-SAFE) recortada a 153 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/how-to-choose-a-pool-builder-in-florida": {
+    "description": "Ten questions that separate Florida pool builders — licensing, who runs your job, how change orders work, and what a contract should say before you sign.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity, SEO-SAFE) recortada a 153 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/louvered-roof-in-florida-rain-and-high-winds": {
+    "description": "How a motorized louvered roof behaves in a Florida storm: where the water goes, why the rating is two numbers, and the position rule owners get backwards.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity, SEO-SAFE) recortada a 154 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/outdoor-kitchen-layout-guide": {
+    "description": "Outdoor kitchen layout is decided by the drain, the smoke, the traffic lane and the sun. How to lay out a run around the way you cook.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 134 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/outdoor-living-design-guide-for-florida-homes": {
+    "description": "How to design a Florida backyard: sun, rain, insects and wind, the order to build in, materials that last, and how pool, shade and kitchen fit.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 143 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/pergola-beside-a-pool-features-to-plan-together": {
+    "description": "Where the posts land, how the roof drains, bonding, the barrier line: eight decisions a pergola and a pool make together, and which close at the pour.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 150 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/pergola-design-decisions-before-construction": {
+    "description": "The seven pergola decisions that close before the posts are set: size, post placement, shade hours, roof and drainage, footings, wiring and provisions.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 151 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/pool-and-spa-or-pool-only": {
+    "description": "The spa decision is not $12,000 versus $18,000. It is the spa plus the heater, what a raised wall does to your view, and what the money buys elsewhere.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 151 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/pool-resurfacing-vs-full-pool-renovation": {
+    "description": "Pool resurfacing replaces the finish only. A full renovation also opens the tile, deck, plumbing and equipment. How to tell which job your pool needs.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity, SEO-SAFE) recortada a 150 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/pool-upgrades-worth-planning-before-construction": {
+    "description": "Which pool upgrades close when the shell is poured, which only need a pipe in the ground, and which can wait — with the estimator figures behind each.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 150 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/questions-to-ask-a-louvered-roof-installer": {
+    "description": "What to ask a louvered roof installer in Florida: which system is quoted, what it is approved for at your span, where the water goes, and who services it.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity, SEO-SAFE) recortada a 154 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/remodel-or-rebuild-your-pool": {
+    "description": "Only two findings justify rebuilding a pool. Five checks in the order that decides — shell, position, geometry, buried work, deck — and what each costs.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity, SEO-SAFE) recortada a 152 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/top-10-luxury-pool-designs-for-florida-homes": {
+    "description": "Ten luxury pool designs that hold up in Florida, what each asks of the lot, the engineering and the budget, and how to tell an idea from a mistake.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 147 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/what-makes-a-pool-look-custom": {
+    "description": "What makes a Florida pool read as custom: alignment with the house, deck proportion, one raised element and one material story, and what locks first.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity, SEO-SAFE) recortada a 149 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/blogs/what-to-upgrade-during-a-complete-pool-remodel": {
+    "description": "Which pool remodel upgrades belong in the scope and which can wait: the ones needing the shell, the deck or the trench open, and what each costs to add.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity, SEO-SAFE) recortada a 152 sin cambiar lo que dice; el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/alachua-fl": {
+    "description": "Transform your Alachua, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (145); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/boca-raton-fl": {
+    "description": "Transform your Boca Raton, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (148); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/cedar-key-fl": {
+    "description": "Transform your Cedar Key, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/chiefland-fl": {
+    "description": "Transform your Chiefland, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/cross-city-fl": {
+    "description": "Transform your Cross City, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (148); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/dania-beach-fl": {
+    "description": "Transform your Dania Beach, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (149); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/gulf-stream-fl": {
+    "description": "Transform your Gulf Stream, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (149); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/hawthorne-fl": {
+    "description": "Transform your Hawthorne, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/hollywood-fl": {
+    "description": "Transform your Hollywood, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/hypoluxo-fl": {
+    "description": "Transform your Hypoluxo, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/juno-beach-fl": {
+    "description": "Transform your Juno Beach, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (148); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/jupiter-fl": {
+    "description": "Transform your Jupiter, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (145); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/lake-city-fl": {
+    "description": "Transform your Lake City, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/manalapan-fl": {
+    "description": "Transform your Manalapan, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/mcintosh-fl": {
+    "description": "Transform your McIntosh, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/micanopy-fl": {
+    "description": "Transform your Micanopy, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/newberry-fl": {
+    "description": "Transform your Newberry, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/ocean-ridge-fl": {
+    "description": "Transform your Ocean Ridge, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 160 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (149); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/old-town-fl": {
+    "description": "Transform your Old Town, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/palatka-fl": {
+    "description": "Transform your Palatka, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (145); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/plantation-fl": {
+    "description": "Transform your Plantation, FL backyard with custom pools, outdoor kitchens & complete outdoor living for family-friendly homes. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/reddick-fl": {
+    "description": "Transform your Reddick, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (145); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/southwest-ranches-fl": {
+    "description": "Transform your Southwest Ranches, FL estate with custom pools, outdoor kitchens & outdoor living for luxury and equestrian lifestyles. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 159 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (153); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/tequesta-fl": {
+    "description": "Transform your Tequesta, FL waterfront backyard with custom pools, outdoor kitchens & complete outdoor living by local experts. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/trenton-fl": {
+    "description": "Transform your Trenton, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (145); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/wellington-fl": {
+    "description": "Transform your Wellington, FL estate with custom pools, outdoor kitchens & outdoor living for luxury and equestrian lifestyles. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (146); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-builders/williston-fl": {
+    "description": "Transform your Williston, FL estate with custom pools, outdoor kitchens & outdoor living tailored for spacious rural properties. Free consultation.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): el cierre «Schedule a free consultation.» pasa a «Free consultation.» (147); el documento de Sanity se corrige despues de publicar."
+  },
+  "/services/pool-remodeling/boca-raton-fl": {
+    "description": "Pool remodeling in Boca Raton, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 157 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (149); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/boynton-beach-fl": {
+    "description": "Pool remodeling in Boynton Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 62 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (47); servicio y ciudad se quedan.",
+    "title": "Pool Remodeling in Boynton Beach, FL | Mr & Mrs"
+  },
+  "/services/pool-remodeling/cedar-key-fl": {
+    "description": "Pool remodeling in Cedar Key, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (148); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/dania-beach-fl": {
+    "description": "Pool remodeling in Dania Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (150); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/delray-beach-fl": {
+    "description": "Pool remodeling in Delray Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan.",
+    "title": "Pool Remodeling in Delray Beach, FL | Mr & Mrs"
+  },
+  "/services/pool-remodeling/fort-lauderdale-fl": {
+    "description": "Pool remodeling in Fort Lauderdale, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 64 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (49); servicio y ciudad se quedan.",
+    "title": "Pool Remodeling in Fort Lauderdale, FL | Mr & Mrs"
+  },
+  "/services/pool-remodeling/gainesville-fl": {
+    "description": "Pool remodeling in Gainesville, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (150); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/gulf-stream-fl": {
+    "description": "Pool remodeling in Gulf Stream, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 158 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (150); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/hollywood-fl": {
+    "description": "Pool remodeling in Hollywood, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (148); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/manalapan-fl": {
+    "description": "Pool remodeling in Manalapan, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): description de 156 car. (Sanity): «licensed Florida pool contractor» pasa a «licensed pool contractor» (148); «FL» ya va en la frase."
+  },
+  "/services/pool-remodeling/west-palm-beach-fl": {
+    "description": "Pool remodeling in West Palm Beach, FL: resurfacing, tile and coping, equipment and deck work in one permitted project, from one licensed pool contractor.",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 64 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (49); servicio y ciudad se quedan.",
+    "title": "Pool Remodeling in West Palm Beach, FL | Mr & Mrs"
+  },
+  "/services/louvered-roofs/west-palm-beach-fl": {
+    "title": "Louvered Roofs in West Palm Beach, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 63 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (48); servicio y ciudad se quedan."
+  },
+  "/services/outdoor-kitchens/dania-beach-fl": {
+    "title": "Outdoor Kitchens in Dania Beach, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan."
+  },
+  "/services/outdoor-kitchens/delray-beach-fl": {
+    "title": "Outdoor Kitchens in Delray Beach, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 62 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (47); servicio y ciudad se quedan."
+  },
+  "/services/outdoor-kitchens/gainesville-fl": {
+    "title": "Outdoor Kitchens in Gainesville, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan."
+  },
+  "/services/outdoor-kitchens/gulf-stream-fl": {
+    "title": "Outdoor Kitchens in Gulf Stream, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan."
+  },
+  "/services/pergola-builders/dania-beach-fl": {
+    "title": "Pergola Builders in Dania Beach, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan."
+  },
+  "/services/pergola-builders/delray-beach-fl": {
+    "title": "Pergola Builders in Delray Beach, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 62 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (47); servicio y ciudad se quedan."
+  },
+  "/services/pergola-builders/gainesville-fl": {
+    "title": "Pergola Builders in Gainesville, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan."
+  },
+  "/services/pergola-builders/gulf-stream-fl": {
+    "title": "Pergola Builders in Gulf Stream, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 61 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (46); servicio y ciudad se quedan."
+  },
+  "/services/pergola-builders/west-palm-beach-fl": {
+    "title": "Pergola Builders in West Palm Beach, FL | Mr & Mrs",
+    "motivo": "L1 (D-255e, 25-oct-2026): title de 65 car. (Sanity): la marca pasa a «Mr & Mrs» para caber en 60 (50); servicio y ciudad se quedan."
   }
 }

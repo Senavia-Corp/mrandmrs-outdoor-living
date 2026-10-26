@@ -325,7 +325,7 @@ if (P_ANTES_PINTADO) {
   const f3 = P_ANTES_PINTADO.lastIndexOf('</div></div></div></section>');
   if (i3 < 0 || f3 < i3) throw new Error(`${slug}: la seccion 3D ya no trae el bloque del video donde se esperaba`);
   // Los dos iconos del boton de pausa no traen medidas del origen: se les ponen (24 x 24).
-  R3D = { h2: nb(m3[1]), p: m3[2], video: P_ANTES_PINTADO.slice(i3, f3).replace(/<img src="\/images\/site\/(?:pause|play-24)\.svg"/g, '$& width="24" height="24"') };
+  R3D = { h2: nb(m3[1]), p: m3[2], video: P_ANTES_PINTADO.slice(i3, f3) };
 }
 
 const FAQ_H2 = FAQ ? nb(esc(FAQ.titulo).replace(/(FAQs?)\s*$/, '<span class="mm-rot">$1</span>')) : '';

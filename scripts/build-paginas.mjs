@@ -1750,6 +1750,12 @@ function folletosStitch(doc, ruta) {
   const sec = doc.querySelector('section.brochures-section-page');
   if (!sec) throw new Error('/brochures: no trae la seccion de catalogos');
   sec.classList.add('mm-folletos');
+  /* L1 (D-255, punto 6): los 57 enlaces a PDF dicen «View More!»; el nombre accesible lleva el folleto, que es
+   * el `alt` de su portada («View More: Artisan Brochure»). Texto visible intacto. */
+  for (const a of sec.querySelectorAll('a[href$=".pdf"]')) {
+    const alt = a.closest('.brochure-wrapper-page')?.querySelector('img')?.getAttribute('alt')?.trim();
+    if (alt && !a.hasAttribute('aria-label')) a.setAttribute('aria-label', `View More: ${alt}`);
+  }
 }
 
 function proyectosIndiceStitch(doc, ruta) {
@@ -3444,9 +3450,12 @@ for (const [ruta] of RUTAS) {
    */
   const TITULO_PROPIO = new Map([
     ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
-      'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
+      'Luxury Pool, Pergola & Outdoor Kitchen | North Florida'],
     ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
-      'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
+      'Luxury Pool, Pergola & Screen Enclosure | North Florida'],
+    // L1 (D-255e): tres titles de proyecto a ≤ 60 car.; «Motorized» y «Project» salen del title, no del h1.
+    ['/project/luxury-pool-pergola-outdoor-kitchen-south-florida',
+      'Luxury Pool, Pergola & Outdoor Kitchen | South Florida'],
   ]);
   const titulo = TITULO_PROPIO.get(ruta) ?? doc.querySelector('title')?.textContent ?? '';
   let desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';

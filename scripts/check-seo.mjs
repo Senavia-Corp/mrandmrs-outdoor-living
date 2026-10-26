@@ -39,9 +39,12 @@ const PROD = process.env.PUBLIC_ES_PRODUCCION === '1';
  */
 const TITULO_PROPIO_M2 = new Map([
   ['/project/luxury-pool-motorized-pergola-outdoor-kitchen-north-florida',
-    'Luxury Pool with Motorized Pergola & Outdoor Kitchen | North Florida'],
+    'Luxury Pool, Pergola & Outdoor Kitchen | North Florida'],
   ['/project/luxury-pool-motorized-pergola-screen-enclosure-north-florida',
-    'Luxury Pool with Motorized Pergola & Screen Enclosure | North Florida'],
+    'Luxury Pool, Pergola & Screen Enclosure | North Florida'],
+  // L1 (D-255e): tres titles de proyecto a ≤ 60 car.; «Motorized» y «Project» salen del title, no del h1.
+  ['/project/luxury-pool-pergola-outdoor-kitchen-south-florida',
+    'Luxury Pool, Pergola & Outdoor Kitchen | South Florida'],
 ]);
 
 /**
@@ -736,11 +739,13 @@ for (const [ruta, c] of Object.entries(JSON.parse(
       }
       const motivo = `SEO-SAFE (${d.fecha}): ${d.motivo}`;
       const mp = () => META_PROPIA.get(ruta) ?? {};
-      if (p.seo?.title && p.seo.title !== b.title) {
+      /* L1 de PUBLICAR (D-255e, 25-oct-2026): si `meta-propia.json` declara title o description para el articulo,
+       * manda la declaracion (es lo que emite Base.astro); la cache de Sanity solo rellena lo que no este declarado. */
+      if (!mp()['og:title'] && p.seo?.title && p.seo.title !== b.title) {
         TITULO_PROPIO.set(ruta, p.seo.title);
         META_PROPIA.set(ruta, { ...mp(), 'og:title': p.seo.title, 'twitter:title': p.seo.title });
       }
-      if (p.seo?.description && p.seo.description !== b.meta?.description) {
+      if (!mp().description && p.seo?.description && p.seo.description !== b.meta?.description) {
         META_PROPIA.set(ruta, { ...mp(), description: p.seo.description,
           'og:description': p.seo.description, 'twitter:description': p.seo.description });
       }

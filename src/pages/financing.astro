@@ -281,6 +281,8 @@ const SEO = {
         <figure class="mm-lam-medio mm-faq-medio"><img class="mm-lam-foto" src={FOTOS[1].src} alt={FOTOS[1].alt} width={FOTOS[1].ancho} height={FOTOS[1].alto} sizes="(min-width: 992px) 42vw, 100vw" loading="lazy" decoding="async" /></figure>
         <div class="mm-faq-accion">
           <a class="mm-btn" href="/request-estimated">Get a Free Estimate</a>
+          {/* D-256 (25-oct-2026, T-138): segundo enlace entrante a la version desnuda del estimador. */}
+          <a class="mm-flecha" href="/pool-investment-estimator">See the Pool Investment Estimator<Fragment set:html={FLECHA} /></a>
           <div class="mm-datos mm-datos--tel">{TELEFONOS.items.map((t) => <a class="mm-dato" href={`tel:${t.tel}`}><span class="mm-dato-val">{t.visible}</span></a>)}</div>
         </div>
       </div>
