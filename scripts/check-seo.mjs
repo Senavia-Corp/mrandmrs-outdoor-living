@@ -422,7 +422,8 @@ const JSONLD_ARREGLADO = {
   },
   '/services/deck-builders': {
     bloque: 0,
-    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    motivo: 'R19: los tres defectos del origen en esta ficha. · L4 de PUBLICAR (6.4): una pregunta anadida al FAQPage, la misma que se ve en la FAQ (captacion-servicios.json > faq.anade).',
+    anadidas: { camino: 'mainEntity.mainEntity', n: 1 },
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Custom Deck Design & Construction'],
@@ -471,7 +472,8 @@ const JSONLD_ARREGLADO = {
   },
   '/services/patio-screen-rooms': {
     bloque: 0,
-    motivo: 'R19: los tres defectos del origen en esta ficha.',
+    motivo: 'R19: los tres defectos del origen en esta ficha. · L4 de PUBLICAR (6.4): una pregunta anadida al FAQPage, la misma que se ve en la FAQ (captacion-servicios.json > faq.anade).',
+    anadidas: { camino: 'mainEntity.mainEntity', n: 1 },
     cambios: [
       ['about.serviceType', 'Smart Soffit LED Lighting Installation',
         'Patio Screen Room Design & Construction'],

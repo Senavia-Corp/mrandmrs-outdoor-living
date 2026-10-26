@@ -1575,3 +1575,9 @@ html { scroll-padding-top: calc(var(--mm-cabecera-alto) + var(--mm-e-16)); scrol
   .mm-local-caja { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--mm-e-48); align-items: start; }
   .mm-local--sin .mm-local-caja { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ── S5 parte 1 (D-254, L4 de PUBLICAR, 26-oct-2026) · LA RESPUESTA, ARRIBA ──────────────────────────
+ * El primer parrafo del articulo es la respuesta al titular: se pinta como entradilla destacada, con la
+ * regla de oro del sistema y el cuerpo mas grande, sin tocar el texto ni su orden. */
+.mm-prosa--art > p:first-child { margin: 0 0 var(--mm-e-32); padding: 0 0 var(--mm-e-24) var(--mm-e-20); border-left: 3px solid var(--mm-oro); border-bottom: 1px solid var(--mm-borde); font-size: 19px; line-height: 1.5; font-weight: 500; color: var(--mm-navy); text-wrap: pretty; }
+

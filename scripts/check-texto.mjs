@@ -3748,6 +3748,17 @@ const CATEGORIA_DE_ARTICULO = (() => {
 })();
 function articuloTexto(ruta, lineas) {
   const out = [...lineas];
+  /* S5 parte 1 (D-254, L4 de PUBLICAR): donde el `summary` de Sanity es el mismo texto que el primer parrafo,
+   * `[slug].astro` no lo pinta dos veces. Se repone aqui, detras del titular, con la misma regla y la misma cache. */
+  {
+    const p = CACHE_BLOG_REESCRITOS.find((x) => `/blogs/${x.slug}` === ruta);
+    const b = p?.blog?.find((x) => x?._type === 'block' && (x.style ?? 'normal') === 'normal' && !x.listItem);
+    const primero = b ? normLinea((b.children ?? []).map((c) => c.text ?? '').join('')) : null;
+    if (p && primero && primero === normLinea(p.summary)) {
+      const t = out.indexOf(capitaliza(normLinea(p.title)));
+      if (t >= 0 && out[t + 1] !== primero) out.splice(t + 1, 0, primero);
+    }
+  }
   const tels = TELEFONOS.items.map((t) => t.visible);
   // D-145: rotulo y enlace del estimador, solo en los articulos de categoria de piscina.
   const dePiscina = CATEGORIAS_PISCINA.includes(CATEGORIA_DE_ARTICULO[ruta.split('/').pop()]);

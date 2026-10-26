@@ -756,6 +756,16 @@
           }
         }
       ]
+    },
+    "faq": {
+      "_lee_esto": "L4 de PUBLICAR (6.4, 26-oct-2026): la consulta-pregunta del plan 2.3 con respuesta extraible en la pagina que la recibe; la respuesta sale de lo que esta ficha ya dice (Sized to your slab / Composite & Treated Wood Decking / Multi-Level & Rooftop Decks). check-seo.mjs la declara en JSONLD_ARREGLADO (anadidas n=1).",
+      "sustituye": {},
+      "anade": [
+        {
+          "pregunta": "Are there companies that build custom decks in Florida?",
+          "respuesta": "Yes. We design and build composite and wood decks across North and South Florida: pressure-treated framing rated for ground contact, capped composite or sealed wood on top, and hot-dipped galvanized or stainless hardware, because salt air and UV punish fasteners first. Multi-level and rooftop decks are engineered for the design wind speed at your address."
+        }
+      ]
     }
   },
   "/services/outdoor-kitchens": {
@@ -1474,6 +1484,16 @@
       "alt": "Interior of a screened patio room looking out over a pool, built in North Florida by Mr & Mrs Outdoor Living",
       "ancho": 1250,
       "alto": 698
+    },
+    "faq": {
+      "_lee_esto": "L4 de PUBLICAR (6.4, 26-oct-2026): la consulta-pregunta del plan 2.3 con respuesta extraible en la pagina que la recibe; la respuesta sale de lo que esta ficha ya dice (Sized to your slab / Composite & Treated Wood Decking / Multi-Level & Rooftop Decks). check-seo.mjs la declara en JSONLD_ARREGLADO (anadidas n=1).",
+      "sustituye": {},
+      "anade": [
+        {
+          "pregunta": "Are there specialists in screen room design in Florida?",
+          "respuesta": "Yes. Screen rooms are a service of their own here, not a sideline: our contractors measure the slab, the roofline and the setbacks, custom-fabricate the aluminum frame for the wind load at your address, and install the enclosure with its permits and inspections. The work runs from scope and utility needs to design, permits and installation."
+        }
+      ]
     }
   },
   "/services/pool-screen-enclosures": {

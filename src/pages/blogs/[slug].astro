@@ -66,6 +66,14 @@ if (!doc.seo.title || !doc.seo.description) throw new Error(`${ruta}: seo incomp
 if (!doc.portada.src || !doc.portada.alt) throw new Error(`${ruta}: la portada no tiene src o alt`);
 
 const cuerpoBase = aHtml(doc.blog, ruta);
+/* S5 parte 1 (D-254, L4 de PUBLICAR, 26-oct-2026): la respuesta va arriba y el lede no se repite.
+ * El primer bloque de los 47 es un parrafo que contesta al titular; `.mm-prosa` lo pinta como entradilla
+ * destacada (CSS, sin tocar el texto ni su orden). Y donde Sanity trae el mismo texto como `summary` y
+ * como primer parrafo (2 de 47), el hero no lo repite: `check-texto.mjs` (articuloTexto) lo repone al medir
+ * con la misma regla, derivada de la cache. */
+const nm1 = (x) => String(x ?? '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+const primerParrafo = doc.blog.find((b) => b?._type === 'block' && (b.style ?? 'normal') === 'normal' && !b.listItem);
+const LEDE_REPETIDO = !!primerParrafo && nm1((primerParrafo.children ?? []).map((c) => c.text ?? '').join('')) === nm1(doc.summary);
 
 /**
  * ── LA FAQ Y LAS FUENTES ────────────────────────────────────────────────────────────────────
@@ -225,13 +233,13 @@ const SEO = {
 <Base titulo={doc.seo.title} descripcion={doc.seo.description} ruta={ruta} seo={SEO} jsonLdCrudo={[]}>
   <section class="mm-hero-c mm-hero-c--art">
     <div class="mm-hero-c-caja">
-      <div class="mm-hero-c-txt"><h1 class="mm-h1">{doc.title}</h1><p class="mm-p">{doc.summary}</p></div>
+      <div class="mm-hero-c-txt"><h1 class="mm-h1">{doc.title}</h1>{!LEDE_REPETIDO && <p class="mm-p">{doc.summary}</p>}</div>
       <figure class="mm-hero-c-medio"><img src={doc.portada.src} srcset={doc.portada.srcset} sizes="(min-width: 992px) 800px, 100vw" alt={doc.portada.alt} width={doc.portada.ancho} height={doc.portada.alto} loading="eager" fetchpriority="high" decoding="async" /></figure>
     </div>
   </section>
 
   <section class="mm-lect">
-    <div class="mm-prosa" set:html={cuerpo} />
+    <div class="mm-prosa mm-prosa--art" set:html={cuerpo} />
     <aside class="mm-lado">
       {dePiscina && <span class="mm-dato-rot">Pool cost estimator</span>}
       <a class="mm-btn mm-btn--navy" href="/request-estimated">Request a Design-Build Project Evaluation</a>
